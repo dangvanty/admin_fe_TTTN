@@ -11,7 +11,7 @@ import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
 export default function Service() {
   const titleTable = [
-    { title: 'Tên Service', name: 'name' },
+    { title: 'Tên dịch vụ', name: 'name' },
     { title: 'Icon', name: 'icon' },
     { title: 'Thời gian', name: 'time' },
     { title: 'action', name: 'action' },

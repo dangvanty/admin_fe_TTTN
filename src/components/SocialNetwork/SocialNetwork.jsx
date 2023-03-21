@@ -56,7 +56,7 @@ export default function SocialNetwork() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Mạng xã hội</h3>
+            <h3>Danh sách mạng xã hội</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

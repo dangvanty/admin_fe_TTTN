@@ -42,7 +42,7 @@ export default function Schedule() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Đặt Lịch</h3>
+            <h3>Danh sách đặt Lịch</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

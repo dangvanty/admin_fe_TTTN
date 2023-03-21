@@ -55,7 +55,7 @@ export default function Gallery() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Thư viện ảnh</h3>
+            <h3>Danh sách thư viện ảnh</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

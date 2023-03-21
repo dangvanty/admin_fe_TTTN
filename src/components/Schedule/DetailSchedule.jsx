@@ -42,7 +42,7 @@ export default function ScheduleDetail() {
                 <div className="title">Loại dịch vụ: {schedule.typeService}</div>
                 <div className="form">
                   <p>
-                    <div className="text-bold">Tên Người dùng</div>: {schedule.name}
+                    <div className="text-bold">Tên khách hàng</div>: {schedule.name}
                   </p>
                   <p>
                     <div className="text-bold">Số điện thoại</div>: {schedule.phone}

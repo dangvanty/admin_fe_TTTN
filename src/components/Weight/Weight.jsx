@@ -54,7 +54,7 @@ export default function Weight() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Cân nặng</h3>
+            <h3>Danh sách cân nặng</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

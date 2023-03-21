@@ -16,7 +16,7 @@ import { camera } from '#/assets/svg/IconSvg';
 import PageWrapper from '#/PageWrapper';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
-
+import '#/assets/scss/AddProduct.scss';
 export default function AddProduct() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -364,56 +364,60 @@ export default function AddProduct() {
               ''
             )}
           </div>
-          <div className="input-admin">
-            <label htmlFor="">Tag</label>
-            {tags.length === 0 ? (
-              <Spinner />
-            ) : (
-              <Select
-                closeMenuOnSelect={false}
-                placeholder="Chọn các tag liên quan"
-                defaultValue={formatDataTag(tagDefault)}
-                isMulti
-                onChange={onchangeTag}
-                options={formatDataTag(tags)}
+          <div className="input-admin-wrapper">
+            <div className="input-admin">
+              <label htmlFor="">Tag</label>
+              {tags.length === 0 ? (
+                <Spinner />
+              ) : (
+                <Select
+                  closeMenuOnSelect={false}
+                  placeholder="Chọn các tag liên quan"
+                  defaultValue={formatDataTag(tagDefault)}
+                  isMulti
+                  onChange={onchangeTag}
+                  options={formatDataTag(tags)}
+                />
+              )}
+            </div>
+            <div className="input-admin">
+              <label htmlFor="">Danh mục sản phẩm</label>
+              {categorys.length === 0 ? (
+                <Spinner />
+              ) : (
+                <Select
+                  closeMenuOnSelect={false}
+                  placeholder="Chọn danh mục sản phẩm"
+                  defaultValue={formatDataCategory(categoryDefault)}
+                  onChange={onchangeCategory}
+                  options={formatDataTag(categorys)}
+                />
+              )}
+            </div>
+          </div>
+          <div className="input-admin-wrapper">
+            <div className="input-admin">
+              <label htmlFor="">Giá</label>
+              <input
+                type="number"
+                {...register('price', {
+                  required: 'Không được bỏ trống!',
+                  maxLength: { value: 255, message: 'Vượt quá ký tự cho phép' },
+                })}
               />
-            )}
-          </div>
-          <div className="input-admin">
-            <label htmlFor="">Danh mục sản phẩm</label>
-            {categorys.length === 0 ? (
-              <Spinner />
-            ) : (
-              <Select
-                closeMenuOnSelect={false}
-                placeholder="Chọn danh mục sản phẩm"
-                defaultValue={formatDataCategory(categoryDefault)}
-                onChange={onchangeCategory}
-                options={formatDataTag(categorys)}
+              {errors.price && <span className="text-danger">{errors.price.message}</span>}
+            </div>
+            <div className="input-admin">
+              <label htmlFor="">Số lượng</label>
+              <input
+                type="number"
+                {...register('quantity', {
+                  required: 'Không được bỏ trống!',
+                  maxLength: { value: 255, message: 'Vượt quá ký tự cho phép' },
+                })}
               />
-            )}
-          </div>
-          <div className="input-admin">
-            <label htmlFor="">Giá</label>
-            <input
-              type="number"
-              {...register('price', {
-                required: 'Không được bỏ trống!',
-                maxLength: { value: 255, message: 'Vượt quá ký tự cho phép' },
-              })}
-            />
-            {errors.price && <span className="text-danger">{errors.price.message}</span>}
-          </div>
-          <div className="input-admin">
-            <label htmlFor="">Số lượng</label>
-            <input
-              type="number"
-              {...register('quantity', {
-                required: 'Không được bỏ trống!',
-                maxLength: { value: 255, message: 'Vượt quá ký tự cho phép' },
-              })}
-            />
-            {errors.quantity && <span className="text-danger">{errors.quantity.message}</span>}
+              {errors.quantity && <span className="text-danger">{errors.quantity.message}</span>}
+            </div>
           </div>
           <div className="input-admin">
             <label htmlFor="">Mô tả</label>

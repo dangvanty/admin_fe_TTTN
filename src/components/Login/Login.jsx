@@ -31,6 +31,7 @@ export default function Login() {
       if (ok === 'err') {
         messageShowErr('Email hoặc mật khẩu không chính xác!');
       } else {
+        console.log('chekcoke::::::', ok);
         messageShowSuccess(`Đăng nhập thành công!`);
         localStorage.setItem('tokenPet', ok);
         setTimeout(() => {

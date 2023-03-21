@@ -59,7 +59,7 @@ export default function New() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Tin tức</h3>
+            <h3>Danh sách Tin tức</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

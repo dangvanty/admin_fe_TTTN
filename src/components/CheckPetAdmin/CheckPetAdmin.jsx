@@ -12,6 +12,7 @@ import Breadcrumb from '../breadcumb/Breadcrumb';
 export default function CheckPetAdmin() {
   const url = useResolvedPath('').pathname;
   const titleTable = [
+    { title: '#id', name: 'key' },
     { title: 'Tên', name: 'name' },
     { title: 'Người dùng', name: 'user' },
     { title: 'Thời gian', name: 'time' },

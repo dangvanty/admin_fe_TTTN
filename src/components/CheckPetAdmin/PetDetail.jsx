@@ -8,6 +8,7 @@ import Breadcrumb from '../breadcumb/Breadcrumb';
 export default function PetDetail() {
   const { id } = useParams();
   const [data, setData] = useState(null);
+  console.log(data);
   useEffect(() => {
     petApi.getOne(id).then((ok) => {
       setData(ok);
@@ -21,7 +22,7 @@ export default function PetDetail() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Kiểm tra thú cưng</h3>
+            <h3>Chi tiết thú cưng</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

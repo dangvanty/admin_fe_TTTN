@@ -56,7 +56,7 @@ export default function Tag() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Tag</h3>
+            <h3>Danh sách Tag</h3>
           </div>
           <div className="heading__hr"></div>
         </div>

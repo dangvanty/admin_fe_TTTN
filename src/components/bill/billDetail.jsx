@@ -45,6 +45,9 @@ export default function BillDetail() {
                 <div className="phone">Số điện thoại: {bill.phone}</div>
                 <div className="phone">Địa chỉ: {bill.address}</div>
               </div>
+              <h4 className="text-center" style={{ textAlign: 'center' }}>
+                Chi tiết sản phẩm
+              </h4>
               {data.map((ok) => (
                 <div className="box" key={ok.id}>
                   <div className="box-img">

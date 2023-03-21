@@ -41,7 +41,7 @@ export default function Bill() {
         <Breadcrumb />
         <div className="heading">
           <div className="heading__title">
-            <h3>Hoá đơn</h3>
+            <h3>Danh sách hoá đơn</h3>
           </div>
           <div className="heading__hr"></div>
         </div>
@@ -58,7 +58,7 @@ export default function Bill() {
                 phone: ok.phone,
                 address: ok.address,
                 detail: (
-                  <p style={{ cursor: 'pointer', color: '$theme-color' }} onClick={() => handleClickDetail(ok.id)}>
+                  <p style={{ cursor: 'pointer', color: '#7740af' }} onClick={() => handleClickDetail(ok.id)}>
                     Chi tiết
                   </p>
                 ),

@@ -1,0 +1,28 @@
+.input-admin-wrapper {
+  width: 100%;
+  display: flex;
+  gap: 50px;
+  .input-admin {
+    width: 50%;
+    input {
+      max-width: 100%;
+    }
+  }
+}
+.input-admin {
+  width: 100%;
+  textarea {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 576px) {
+  .input-admin-wrapper {
+    display: block;
+    .input-admin {
+      width: 100%;
+      input {
+        max-width: 100%;
+      }
+    }
+  }
+}

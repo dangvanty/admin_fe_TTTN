@@ -11,7 +11,7 @@ export default function Table({ dataSource, titleTable, urlHistory, onchangeEdit
   useEffect(() => {
     showAction(tableEl.current, blurEl.current);
   }, []);
-
+  console.log(dataSource);
   let arrTitle = [];
   for (let i = 0; i < titleTable.length; i++) {
     arrTitle.push(titleTable[i].name);

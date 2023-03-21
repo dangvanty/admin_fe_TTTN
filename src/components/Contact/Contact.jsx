@@ -14,6 +14,7 @@ export default function Contact() {
     { title: 'Email', name: 'email' },
     { title: 'Phone', name: 'phone' },
     { title: 'Address', name: 'address' },
+    { title: 'Mô tả', name: 'description' },
     { title: 'action', name: 'action' },
   ];
 
@@ -81,6 +82,7 @@ export default function Contact() {
                 address: ok.address,
                 email: ok.email,
                 time: formatDate(ok.createdAt),
+                description: ok.description,
                 action:
                   ok.status !== 0 ? (
                     <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>

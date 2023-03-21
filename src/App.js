@@ -30,6 +30,7 @@ import AddSocialNetwork from './components/SocialNetwork/AddSocialNetwork';
 import Login from './components/Login/Login';
 import ProtectedRoute from './helper/ProtectRouter';
 import CheckLogin from './helper/CheckLogin';
+import Notfound from './components/NotFound/NotFound';
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
             <Route path="/admin/SocialNetwork/AddSocialNetwork/:id" element={<AddSocialNetwork />} />
             <Route path="/admin/SocialNetwork/AddSocialNetwork" element={<AddSocialNetwork />} />
           </Route>
+          <Route path="*" element={<Notfound />} />
         </Routes>
       </BreadcrumbsProvider>
     </div>

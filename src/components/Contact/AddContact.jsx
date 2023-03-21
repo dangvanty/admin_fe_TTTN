@@ -99,7 +99,7 @@ export default function AddContact() {
             {errors.address && <span className="text-danger">{errors.address.message}</span>}
           </div>
           <div className="input-admin">
-            <label htmlFor="">Nội dung</label>
+            <label htmlFor="">Mô tả</label>
             <textarea
               rows="10"
               {...register('description', {
