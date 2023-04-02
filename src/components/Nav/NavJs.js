@@ -5,27 +5,11 @@ export const clickActive = (ul, line, liIndex) => {
   listLi.forEach((item, index) => {
     item.onclick = function () {
       const listActive = ul.querySelector('li>a.active');
-      lineSlide(index, listActive);
+      // lineSlide(index, listActive);
       listActive.classList.remove('active');
       item.classList.add('active');
     };
   });
-
-  const lineSlide = (i, liActive) => {
-    let index = i;
-    let heightLine = liActive.offsetHeight;
-    line.style.height = heightLine + 'px';
-    line.style.top = resultTop(index) + 'px';
-  };
-  const resultTop = (index) => {
-    let result = 0;
-
-    for (let i = 0; i < index; i++) {
-      result += 42;
-    }
-    return result;
-  };
-  lineSlide(liIndex, listActive);
 };
 export const clickBar = (bar) => {
   let menuAdmin = document.querySelector('.nav-left');

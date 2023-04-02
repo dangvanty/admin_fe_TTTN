@@ -85,11 +85,11 @@ export default function Gallery() {
                 time: formatDate(ok.createdAt),
                 action:
                   ok.status !== 0 ? (
-                    <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>
+                    <div className="status-icon" title="active" onClick={() => onchangeStatus(1, ok.id)}>
                       {statusOn}
                     </div>
                   ) : (
-                    <div className="status-icon" onClick={() => onchangeStatus(0, ok.id)}>
+                    <div className="status-icon" title="no-active" onClick={() => onchangeStatus(0, ok.id)}>
                       {statusOff}
                     </div>
                   ),

@@ -3,17 +3,17 @@ import axiosClient from './axiosClient';
 
 class CategoryApi {
   getAll = (params) => {
-    const url = '/categorys';
+    const url = '/categories';
     return axiosClient.get(url, { params });
   };
   getOne = (params) => {
-    const url = `/categorys/${params}`;
+    const url = `/categories/${params}`;
     return axiosClient.get(url).then((data) => {
       return data.data;
     });
   };
   postcategory = (params) => {
-    const url = '/categorys';
+    const url = '/categories';
     return axiosClient
       .post(url, params)
       .then((data) => {
@@ -24,7 +24,7 @@ class CategoryApi {
       });
   };
   deletecategory = (id) => {
-    const url = `/categorys/${id}`;
+    const url = `/categories/${id}`;
     return axiosClient
       .delete(url)
       .then((data) => {
@@ -35,7 +35,7 @@ class CategoryApi {
       });
   };
   editcategory = (params) => {
-    const url = `/categorys/${params.id}`;
+    const url = `/categories/${params.id}`;
     return axiosClient
       .patch(url, params)
       .then((data) => {

@@ -1,9 +1,13 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 
 class LoginApi {
   login = (params) => {
-    const url = "/login";
+    const url = '/users/login';
     return axiosClient.post(url, params);
+  };
+  checkAdmin = () => {
+    const url = '/users/getRoleUser';
+    return axiosClient.get(url);
   };
 }
 const loginApi = new LoginApi();

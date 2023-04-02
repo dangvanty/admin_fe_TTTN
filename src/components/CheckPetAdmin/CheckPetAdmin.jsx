@@ -26,7 +26,8 @@ export default function CheckPetAdmin() {
     petApi
       .getCheckAdmin({ page: page })
       .then((ok) => {
-        setdata(ok);
+        console.log(ok.rows);
+        setdata(ok?.rows);
       })
       .catch((err) => {
         console.log(err);
@@ -75,7 +76,7 @@ export default function CheckPetAdmin() {
             <Table
               titleTable={titleTable}
               hidentDot={true}
-              dataSource={data.rows.map((ok, index) => ({
+              dataSource={data.map((ok, index) => ({
                 key: ok.id,
                 name: <Link to={`${url}/PetDetail/${ok.id}`}>{ok.name}</Link>,
                 time: formatDate(ok.createdAt),

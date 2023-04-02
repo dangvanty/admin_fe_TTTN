@@ -52,6 +52,7 @@ class NewApi {
         messageShowSuccess('Sửa thành công!');
       })
       .catch((err) => {
+        console.log(err);
         messageShowErr('Có lỗi xảy ra!');
       });
   };

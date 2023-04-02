@@ -3,11 +3,11 @@ import axiosClient from './axiosClient';
 
 class BillApi {
   getAll = (params) => {
-    const url = '/bills';
+    const url = '/orders';
     return axiosClient.get(url, { params });
   };
   getOne = (params) => {
-    const url = `/bills/${params}`;
+    const url = `/orders/${params}`;
     return axiosClient.get(url).then((data) => {
       return data.data;
     });
@@ -24,7 +24,7 @@ class BillApi {
       });
   };
   deletebill = (id) => {
-    const url = `/bills/${id}`;
+    const url = `/orders/${id}`;
     return axiosClient
       .delete(url)
       .then((data) => {
@@ -35,7 +35,7 @@ class BillApi {
       });
   };
   editbill = (params) => {
-    const url = `/bills/${params.id}`;
+    const url = `/orders/${params.id}`;
     return axiosClient
       .patch(url, params)
       .then((data) => {

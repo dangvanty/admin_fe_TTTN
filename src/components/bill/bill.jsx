@@ -8,11 +8,13 @@ import Table from '../Table/Table';
 import PageWrapper from '#/PageWrapper';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
+import { fCurrency } from '#/helper/formatNumber';
 export default function Bill() {
   const titleTable = [
     { title: 'Người mua', name: 'user' },
     { title: 'Điện thoại', name: 'phone' },
     { title: 'Địa chỉ', name: 'address' },
+    { title: 'Tổng tiền', name: 'total_price' },
     { title: 'Chi tiết', name: 'detail' },
     { title: 'Thời gian', name: 'time' },
   ];
@@ -54,8 +56,9 @@ export default function Bill() {
               urlHistory="/admin/Bill/DetailBill"
               dataSource={data.rows.map((ok, index) => ({
                 key: ok.id,
-                user: ok.userName,
+                user: ok.User.firstName + ' ' + ok.User.lastName,
                 phone: ok.phone,
+                total_price: fCurrency(ok.total_price),
                 address: ok.address,
                 detail: (
                   <p style={{ cursor: 'pointer', color: '#7740af' }} onClick={() => handleClickDetail(ok.id)}>

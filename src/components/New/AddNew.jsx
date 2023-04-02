@@ -44,10 +44,11 @@ export default function AddNew() {
   useEffect(() => {
     if (id) {
       newApi.getOne(id).then((ok) => {
+        console.log('ok...', ok);
         reset(ok);
         setState({
           ...state,
-          tagDefault: ok.Tags,
+          tagDefault: ok?.Tags,
 
           imgId: ok.avatar,
         });
@@ -152,7 +153,7 @@ export default function AddNew() {
   };
   const formatDataTag = (e) => {
     var arr = [];
-    for (let i = 0; i < e.length; i++) {
+    for (let i = 0; i < e?.length; i++) {
       arr.push({ value: e[i].id, label: e[i].name });
     }
     return arr;

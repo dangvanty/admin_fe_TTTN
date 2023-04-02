@@ -20,13 +20,15 @@ export default function Service() {
   const [data, setdata] = useState(null);
   const [page, setPage] = useState(1);
   const [load, setLoad] = useState(false);
+
   useEffect(() => {
     ServiceApi.getAll({ page: page })
       .then((ok) => {
         setdata(ok.data);
+        console.log('::::data::', data);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log('What happened? ' + error.response);
       });
   }, [load, page]);
   const history = useNavigate();
@@ -74,7 +76,7 @@ export default function Service() {
               onchangeDelete={onchangeDelete}
               urlHistory="/admin/Service/AddService"
               onchangeEdit={onchangeEdit}
-              dataSource={data.rows.map((ok, index) => ({
+              dataSource={data?.rows.map((ok, index) => ({
                 key: ok.id,
                 name: ok.name,
                 icon: (
@@ -86,11 +88,11 @@ export default function Service() {
                 time: formatDate(ok.createdAt),
                 action:
                   ok.status !== 0 ? (
-                    <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>
+                    <div className="status-icon" title="active" onClick={() => onchangeStatus(1, ok.id)}>
                       {statusOn}
                     </div>
                   ) : (
-                    <div className="status-icon" onClick={() => onchangeStatus(0, ok.id)}>
+                    <div className="status-icon" title="no-active" onClick={() => onchangeStatus(0, ok.id)}>
                       {statusOff}
                     </div>
                   ),

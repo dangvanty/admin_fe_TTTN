@@ -19,10 +19,12 @@ import {
   weight,
 } from '#/assets/svg/IconSvg';
 import { clickActive } from './NavJs';
+
 export default function NavMenu() {
   const ulEL = useRef(null);
   const lineEL = useRef(null);
   const user = useSelector((state) => state.user.user);
+  // console.log('user:::::::::', user);
 
   useEffect(() => {
     const listLi = ulEL.current.querySelectorAll('li a');

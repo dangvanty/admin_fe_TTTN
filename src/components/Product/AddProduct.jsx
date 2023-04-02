@@ -68,6 +68,7 @@ export default function AddProduct() {
   useEffect(() => {
     if (id) {
       productApi.getOne(id).then((ok) => {
+        console.log('jdflkjdfl:::', ok);
         reset(ok);
         setText(ok.text);
         setState({
@@ -261,6 +262,7 @@ export default function AddProduct() {
           var imgs = await storage.ref('imagesProduct').child(mutilImg[i].name).getDownloadURL();
           imgproduct.push({ link: imgs });
         }
+
         await productApi.postproduct({
           name: data.name,
           price: data.price,

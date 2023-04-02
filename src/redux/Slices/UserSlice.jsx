@@ -15,16 +15,13 @@ const User = createSlice({
   initialState: {
     user: [],
     userInfor: userInfor,
-    loading: true,
+    loading: false,
     error: '',
   },
   reducers: {
     // inforUser: (state, action) => {
     //   userApi.postuser(action.payload);
     // },
-    userData: () => {
-      userApi.checkUser();
-    },
   },
   extraReducers: {
     [userData.pending]: (state) => {

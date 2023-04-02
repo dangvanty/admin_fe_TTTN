@@ -90,11 +90,11 @@ export default function New() {
                 time: formatDate(ok.createdAt),
                 action:
                   ok.status !== 0 ? (
-                    <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>
+                    <div className="status-icon" title="đã đăng bài" onClick={() => onchangeStatus(1, ok.id)}>
                       {statusOn}
                     </div>
                   ) : (
-                    <div className="status-icon" onClick={() => onchangeStatus(0, ok.id)}>
+                    <div className="status-icon" title="chưa đăng bài" onClick={() => onchangeStatus(0, ok.id)}>
                       {statusOff}
                     </div>
                   ),

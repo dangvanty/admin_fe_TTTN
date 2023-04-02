@@ -7,6 +7,7 @@ import { userData } from '#/redux/Slices/UserSlice';
 import { messageShowErr, messageShowSuccess } from '#/helper/sub-function';
 import '#/assets/scss/Login.scss';
 import { eyeHidenLogin, eyeShowLogin, lockLogin, userLogin } from '#/assets/svg/IconSvg';
+
 export default function Login() {
   const {
     register,
@@ -27,19 +28,35 @@ export default function Login() {
     await dispatch(userData());
   };
   const onSubmit = async (data) => {
-    await loginApi.login({ email: data.email, password: data.password }).then((ok) => {
-      if (ok === 'err') {
+    console.log(data);
+    await loginApi
+      .login({ email: data.email, password: data.password })
+      .then((ok) => {
+        localStorage.setItem('tokenPet', ok.token);
+      })
+      .then(() => {
+        loginApi
+          .checkAdmin()
+          .then((res) => {
+            console.log('checkadmin::::', res);
+
+            messageShowSuccess(`Đăng nhập thành công!`);
+            setTimeout(() => {
+              actionResult();
+            }, 300);
+            navigate('/admin');
+          })
+          .catch((errors) => {
+            console.log(errors.message);
+            localStorage.removeItem('tokenPet');
+            messageShowErr('Email hoặc mật khẩu không chính xác!');
+          });
+      })
+      .catch((errors) => {
+        console.log(errors.message);
         messageShowErr('Email hoặc mật khẩu không chính xác!');
-      } else {
-        console.log('chekcoke::::::', ok);
-        messageShowSuccess(`Đăng nhập thành công!`);
-        localStorage.setItem('tokenPet', ok);
-        setTimeout(() => {
-          actionResult();
-        }, 300);
-        navigate('/admin');
-      }
-    });
+        // console.log(errors.response.data)
+      });
   };
   return (
     <div className="Login" style={style}>

@@ -6,10 +6,10 @@ class UserApi {
     return axiosClient.get(url, { params });
   };
   checkUser = (params) => {
-    const url = `/users/checkUser`;
+    const url = `/users/me`;
     if (localStorage.getItem('tokenPet')) {
       return axiosClient.get(url).then((data) => {
-        return data.data.user;
+        return data.user;
       });
     } else {
       return [];

@@ -27,7 +27,7 @@ export default function Category() {
     categoryApi
       .getAll({ page: page })
       .then((ok) => {
-        setdata(ok.data);
+        setdata(ok.data?.rows);
       })
       .catch((err) => {
         console.log(err);
@@ -77,7 +77,7 @@ export default function Category() {
               onchangeDelete={onchangeDelete}
               onchangeEdit={onchangeEdit}
               urlHistory="/admin/Category/AddCategory"
-              dataSource={data.rows.map((ok, index) => ({
+              dataSource={data.map((ok, index) => ({
                 key: ok.id,
                 name: ok.name,
                 avatar: (
@@ -88,11 +88,11 @@ export default function Category() {
                 time: formatDate(ok.createdAt),
                 action:
                   ok.status !== 0 ? (
-                    <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>
+                    <div className="status-icon" title="active" onClick={() => onchangeStatus(1, ok.id)}>
                       {statusOn}
                     </div>
                   ) : (
-                    <div className="status-icon" onClick={() => onchangeStatus(0, ok.id)}>
+                    <div className="status-icon" title="no-active" onClick={() => onchangeStatus(0, ok.id)}>
                       {statusOff}
                     </div>
                   ),
