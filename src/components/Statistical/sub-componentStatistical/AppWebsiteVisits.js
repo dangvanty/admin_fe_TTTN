@@ -9,12 +9,12 @@ import { useChart } from '../chart';
 
 AppWebsiteVisits.propTypes = {
   title: PropTypes.string,
-  subheader: PropTypes.string,
+  subheader: PropTypes.array,
   chartData: PropTypes.array.isRequired,
   chartLabels: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
-export default function AppWebsiteVisits({ title, subheader, chartLabels, chartData, ...other }) {
+export default function AppWebsiteVisits({ handleYear, title, subheader, chartLabels, chartData, ...other }) {
   const chartOptions = useChart({
     plotOptions: { bar: { columnWidth: '16%' } },
     fill: { type: chartData.map((i) => i.fill) },
@@ -36,7 +36,14 @@ export default function AppWebsiteVisits({ title, subheader, chartLabels, chartD
 
   return (
     <Card {...other}>
-      <CardHeader title={title} subheader={subheader} />
+      <CardHeader title={title} />
+      <div style={{ marginLeft: '15px' }}>
+        Năm
+        <select onClick={(e) => handleYear(e.target.value)}>
+          <option value={2023}>2023</option>
+          <option value={2022}>2022</option>
+        </select>
+      </div>
 
       <Box sx={{ p: 3, pb: 1 }} dir="ltr">
         <ReactApexChart type="line" series={chartData} options={chartOptions} height={364} />

@@ -48,7 +48,7 @@ export default function AppWidgetSummary({ title, total, icon, color = 'primary'
       </StyledIcon>
 
       <Typography variant="h4">{fShortenNumber(total)}</Typography>
-      <Typography variant="h7">{fShortenNumber(total)}</Typography>
+      {/* <Typography variant="h7">{fShortenNumber(total)}</Typography> */}
 
       <Typography variant="subtitle2" sx={{ opacity: 0.72 }}>
         {title}
