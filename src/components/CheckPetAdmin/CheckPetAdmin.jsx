@@ -9,13 +9,15 @@ import Table from '../Table/Table';
 import PageWrapper from '#/PageWrapper';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
+import { fCurrency } from '#/helper/formatNumber';
 export default function CheckPetAdmin() {
   const url = useResolvedPath('').pathname;
   const titleTable = [
     { title: '#id', name: 'key' },
     { title: 'Tên', name: 'name' },
-    { title: 'Người dùng', name: 'user' },
+    { title: 'Người bán', name: 'user' },
     { title: 'Thời gian', name: 'time' },
+    { title: 'Giá', name: 'price' },
     { title: 'Duyệt', name: 'action' },
   ];
 
@@ -35,7 +37,7 @@ export default function CheckPetAdmin() {
   }, [load, page]);
   const onchangeStatus = (e, id) => {
     setdata(null);
-    console.log(e);
+    console.log({ e: typeof e, id: id });
     if (e === 1) {
       petApi
         .editpet({ checkAdmin: 2, id: id })
@@ -80,14 +82,15 @@ export default function CheckPetAdmin() {
                 key: ok.id,
                 name: <Link to={`${url}/PetDetail/${ok.id}`}>{ok.name}</Link>,
                 time: formatDate(ok.createdAt),
+                price: `${fCurrency(ok.price)} vnđ`,
                 user: ok.User.firstName + ' ' + ok.User.lastName,
                 action:
                   ok.checkAdmin === 2 ? (
-                    <div className="status-icon" onClick={() => onchangeStatus(2, ok.id)}>
+                    <div className="status-icon" title="đã duyệt bán" onClick={() => onchangeStatus(2, ok.id)}>
                       {check}
                     </div>
                   ) : (
-                    <div className="status-icon" onClick={() => onchangeStatus(1, ok.id)}>
+                    <div className="status-icon" title="chưa duyệt bán" onClick={() => onchangeStatus(1, ok.id)}>
                       {notCheck}
                     </div>
                   ),

@@ -110,9 +110,7 @@ export default function Login() {
             </div>
           </div>
           {errors.password && <p className="text-danger">{errors.password.message}</p>}
-          <div className="forgot">
-            <span>Quên mật khẩu?</span>
-          </div>
+          <div className="forgot">{/* <span>Quên mật khẩu?</span> */}</div>
           <div className="btn-login">
             <button style={{ color: 'white' }}>Đăng nhập</button>
           </div>

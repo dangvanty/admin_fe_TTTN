@@ -80,6 +80,7 @@ export default function AddProduct() {
           imgId: ok.avatar,
         });
       });
+      console.log('avater::::', imgId);
     }
     getApiTag();
     getApiCategory();
@@ -101,6 +102,16 @@ export default function AddProduct() {
             await storage.ref(`imagesProduct/${img.name}`).put(img);
             const anh = await storage.ref('imagesProduct').child(img.name).getDownloadURL();
             if (checkArrayEquar(formatTagDefault(tagDefault), tagId)) {
+              console.log({
+                name: data.name,
+                price: data.price,
+                description: data.description,
+                quantity: data.quantity,
+                text: text,
+                categoryId: categoryId === '' ? categoryDefault.id : categoryId,
+                avatar: anh,
+                id: id,
+              });
               await productApi.editproduct({
                 name: data.name,
                 price: data.price,
@@ -140,9 +151,11 @@ export default function AddProduct() {
             await imageProductApi.deleteimageProduct(id);
             var data1 = [];
             for (let i = 0; i < imgproduct.length; i++) {
-              let img = imgproduct[i];
-              data1.push({ productId: id, link: img });
+              let link = imgproduct[i].link;
+              data1.push({ productId: id, link });
             }
+            console.log('img::::', data1);
+
             await imageProductApi.postimageProduct(data1);
             if (checkArrayEquar(formatTagDefault(tagDefault), tagId)) {
               await productApi.editproduct({
@@ -161,6 +174,7 @@ export default function AddProduct() {
                 let tag = tagId[i];
                 data1.push({ productId: id, tagId: tag });
               }
+              console.log('tag:::', data1);
               await tagProductApi.posttagProduct(data1);
               await productApi.editproduct({
                 name: data.name,
@@ -182,9 +196,10 @@ export default function AddProduct() {
             await imageProductApi.deleteimageProduct(id);
             var data1 = [];
             for (let i = 0; i < imgproduct.length; i++) {
-              let img = imgproduct[i];
-              data1.push({ productId: id, link: img });
+              let link = imgproduct[i].link;
+              data1.push({ productId: id, link });
             }
+            console.log('qqqq:::::', { mutilImg, imgproduct, data1 });
             await imageProductApi.postimageProduct(data1);
             await storage.ref(`imagesProduct/${img.name}`).put(img);
             const anh = await storage.ref('imagesProduct').child(img.name).getDownloadURL();
@@ -276,6 +291,7 @@ export default function AddProduct() {
           status: 0,
         });
       }
+      setState({ ...state, loadSpin: false });
       navigate('/Admin/Products');
     } else {
       messageShowErr('Chưa đủ thông tin!');

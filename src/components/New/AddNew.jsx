@@ -50,9 +50,9 @@ export default function AddNew() {
           ...state,
           tagDefault: ok?.Tags,
 
-          imgId: ok.avatar,
+          imgId: ok?.avatar,
         });
-        setContent(ok.content);
+        setContent(ok?.content);
       });
     }
     getApiTag();

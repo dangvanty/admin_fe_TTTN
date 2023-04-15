@@ -10,11 +10,13 @@ import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
 export default function Schedule() {
   const titleTable = [
+    { title: '#id', name: 'key' },
     { title: 'Người mua', name: 'name' },
     { title: 'Điện thoại', name: 'phone' },
     { title: 'Địa chỉ', name: 'address' },
-    { title: 'Chi tiết', name: 'detail' },
     { title: 'Thời gian', name: 'time' },
+    { title: 'Action', name: 'action' },
+    { title: 'Chi tiết', name: 'detail' },
   ];
 
   const [data, setdata] = useState(null);
@@ -34,6 +36,19 @@ export default function Schedule() {
   const history = useNavigate();
   const handleClickDetail = (e) => {
     history(`/admin/Schedule/ScheduleDetail/${e}`);
+  };
+  const onchangeStatus = (e, id) => {
+    setdata(null);
+    if (e === 0) {
+      if (window.confirm('Xác nhận lịch đặt này?')) {
+        scheduleApi.editschedule({ status: 1, id: id });
+      }
+    } else {
+      scheduleApi.editschedule({ status: 0, id: id });
+    }
+    setTimeout(() => {
+      setLoad(!load);
+    }, 500);
   };
   return (
     <PageWrapper>
@@ -58,6 +73,16 @@ export default function Schedule() {
                 name: ok.name,
                 phone: ok.phone,
                 address: ok.address,
+                action:
+                  ok.status === 0 ? (
+                    <div className="status-bill-no" title="chưa xác nhận" onClick={() => onchangeStatus(0, ok.id)}>
+                      chưa xác nhận
+                    </div>
+                  ) : (
+                    <div className="status-bill-yes" title="chưa xác nhận">
+                      đã xác nhận
+                    </div>
+                  ),
                 detail: (
                   <p style={{ cursor: 'pointer', color: '#a749ff' }} onClick={() => handleClickDetail(ok.id)}>
                     Chi tiết

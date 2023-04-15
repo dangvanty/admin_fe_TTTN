@@ -47,7 +47,7 @@ export default function PetDetail() {
           </div>
           <div className="text">
             <div className="title">Chi tiết</div>
-            <div dangerouslySetInnerHTML={{ __html: data ? data?.text : '' }} />
+            <div dangerouslySetInnerHTML={{ __html: data ? data?.text : '' }} className="content-detail" />
             {/* {renderHTML(data ? data?.text : '')} */}
           </div>
         </div>

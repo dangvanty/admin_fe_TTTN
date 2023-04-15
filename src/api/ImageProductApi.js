@@ -1,8 +1,8 @@
-import axiosClient from "./axiosClient";
+import axiosClient from './axiosClient';
 
 class ImageProductApi {
   getAll = (params) => {
-    const url = "/imageProducts";
+    const url = '/imageProducts';
     return axiosClient.get(url, { params });
   };
   getOne = (params) => {
@@ -12,7 +12,7 @@ class ImageProductApi {
     });
   };
   postimageProduct = (params) => {
-    const url = "/imageProducts";
+    const url = '/imageProducts';
     return axiosClient.post(url, params);
   };
   deleteimageProduct = (id) => {

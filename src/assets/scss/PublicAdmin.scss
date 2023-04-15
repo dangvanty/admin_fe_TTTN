@@ -78,3 +78,19 @@
 .status-icon {
   cursor: pointer;
 }
+.status-bill-no {
+  cursor: pointer;
+  padding: 2px;
+  background-color: rgba(170, 73, 73, 0.808);
+  width: 80%;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.status-bill-yes {
+  text-align: center;
+  border-radius: 20px;
+  padding: 2px;
+  background-color: rgba(85, 214, 26, 0.808);
+  width: 80%;
+}

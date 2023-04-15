@@ -65,7 +65,7 @@ class PetApi {
       });
   };
   editpet = (params) => {
-    const url = `/pets/${params.id}`;
+    const url = `/pets/checkAdmin/${params.id}`;
     return axiosClient.patch(url, params);
   };
 }

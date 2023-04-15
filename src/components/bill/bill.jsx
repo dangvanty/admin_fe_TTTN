@@ -15,8 +15,9 @@ export default function Bill() {
     { title: 'Điện thoại', name: 'phone' },
     { title: 'Địa chỉ', name: 'address' },
     { title: 'Tổng tiền', name: 'total_price' },
-    { title: 'Chi tiết', name: 'detail' },
     { title: 'Thời gian', name: 'time' },
+    { title: 'action', name: 'action' },
+    { title: 'Chi tiết', name: 'detail' },
   ];
 
   const [data, setdata] = useState(null);
@@ -35,6 +36,19 @@ export default function Bill() {
   const history = useNavigate();
   const handleClickDetail = (e) => {
     history(`/admin/Bill/DetailBill/${e}`);
+  };
+  const onchangeStatus = (e, id) => {
+    setdata(null);
+    if (e === 1) {
+      if (window.confirm('Xác nhận thanh toán đơn hàng này?')) {
+        billApi.editbill({ status: 2, id: id });
+      }
+    } else {
+      billApi.editbill({ status: 0, id: id });
+    }
+    setTimeout(() => {
+      setLoad(!load);
+    }, 500);
   };
   return (
     <PageWrapper>
@@ -60,6 +74,16 @@ export default function Bill() {
                 phone: ok.phone,
                 total_price: fCurrency(ok.total_price),
                 address: ok.address,
+                action:
+                  ok.status === 1 ? (
+                    <div className="status-bill-no" title="chưa thanh toán" onClick={() => onchangeStatus(1, ok.id)}>
+                      chưa thanh toán
+                    </div>
+                  ) : (
+                    <div className="status-bill-yes" title="đã thanh toán">
+                      đã thanh toán
+                    </div>
+                  ),
                 detail: (
                   <p style={{ cursor: 'pointer', color: '#7740af' }} onClick={() => handleClickDetail(ok.id)}>
                     Chi tiết
