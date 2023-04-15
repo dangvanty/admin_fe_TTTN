@@ -29,6 +29,7 @@ export default function AddProduct() {
     tagId: '',
     tagDefault: [],
     categoryDefault: '',
+    cateDef1: '',
     mutilImg: '',
     mutilImgId: '',
     categoryId: '',
@@ -41,6 +42,7 @@ export default function AddProduct() {
     tagDefault,
     categoryId,
     categoryDefault,
+    cateDef1,
     mutilImg,
     mutilImgId,
     img,
@@ -75,6 +77,7 @@ export default function AddProduct() {
           ...state,
           tagDefault: ok.Tags,
           categoryDefault: ok.Category,
+          cateDef1: formatDataCategory(ok.Category),
           tagId: formatTagDefault(ok.Tags),
           mutilImgId: ok.imgproduct,
           imgId: ok.avatar,
@@ -406,7 +409,7 @@ export default function AddProduct() {
                 <Select
                   closeMenuOnSelect={false}
                   placeholder="Chọn danh mục sản phẩm"
-                  defaultValue={formatDataCategory(categoryDefault)}
+                  defaultValue={cateDef1}
                   onChange={onchangeCategory}
                   options={formatDataTag(categorys)}
                 />

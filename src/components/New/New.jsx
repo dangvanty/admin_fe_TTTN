@@ -13,6 +13,7 @@ import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
 import Breadcrumb from '../breadcumb/Breadcrumb';
 export default function New() {
   const titleTable = [
+    { title: '#id', name: 'key' },
     { title: 'Tên tin tức', name: 'name' },
     { title: 'Ảnh', name: 'img' },
     { title: 'Người đăng', name: 'author' },

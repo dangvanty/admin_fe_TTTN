@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation, useResolvedPath, useRouteMatch } from 'react-router-dom';
 import '#/assets/scss/Nav.scss';
 import {
@@ -19,13 +19,14 @@ import {
   weight,
 } from '#/assets/svg/IconSvg';
 import { clickActive } from './NavJs';
+import { userData } from '#/redux/Slices/UserSlice';
 
 export default function NavMenu() {
   const ulEL = useRef(null);
   const lineEL = useRef(null);
   const user = useSelector((state) => state.user.user);
   // console.log('user:::::::::', user);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     const listLi = ulEL.current.querySelectorAll('li a');
     const listActive = ulEL.current.querySelector('li>a.active');
@@ -43,6 +44,7 @@ export default function NavMenu() {
       }
     }
     clickActive(ulEL.current, lineEL.current, liIndex);
+    dispatch(userData());
   }, []);
   const path = useResolvedPath('').pathname;
   const { pathname } = useLocation();

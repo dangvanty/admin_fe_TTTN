@@ -1,7 +1,7 @@
 import JoditEditor from 'jodit-react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router';
 import Select from 'react-select';
 import newApi from '#/api/newApi';
@@ -15,6 +15,7 @@ import { camera } from '#/assets/svg/IconSvg';
 import PageWrapper from '#/PageWrapper';
 import Breadcrumb from '../breadcumb/Breadcrumb';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
+import { userData } from '#/redux/Slices/UserSlice';
 export default function AddNew() {
   const [state, setState] = useState({
     linkImg: '',
@@ -41,6 +42,7 @@ export default function AddNew() {
       setTags(ok.data.rows);
     });
   };
+  const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
       newApi.getOne(id).then((ok) => {
@@ -56,6 +58,7 @@ export default function AddNew() {
       });
     }
     getApiTag();
+    dispatch(userData());
   }, []);
   const navigate = useNavigate();
   const [content, setContent] = useState();
@@ -79,8 +82,9 @@ export default function AddNew() {
             var data1 = [];
             for (let i = 0; i < tagId.length; i++) {
               let tag = tagId[i];
-              data1.push({ newId: id, tagId: tag });
+              data1.push({ newsId: id, tagId: tag });
             }
+
             await tagNewApi.posttagNew(data1);
             await newApi.editnew({
               name: data.name,
@@ -103,8 +107,9 @@ export default function AddNew() {
             var data1 = [];
             for (let i = 0; i < tagId.length; i++) {
               let tag = tagId[i];
-              data1.push({ newId: id, tagId: tag });
+              data1.push({ newsId: id, tagId: tag });
             }
+            console.log('dfdfdfdcheck::::', data1);
             await tagNewApi.posttagNew(data1);
             await newApi.editnew({
               name: data.name,
@@ -117,20 +122,30 @@ export default function AddNew() {
       } else {
         await storage.ref(`imagesNews/${img.name}`).put(img);
         const anh = await storage.ref('imagesNews').child(img.name).getDownloadURL();
-        var tagnew = [];
+        var tagnews = [];
         for (let i = 0; i < tagId.length; i++) {
-          tagnew.push({ tagId: tagId[i] });
+          tagnews.push({ tagId: tagId[i] });
         }
+        console.log({
+          name: data.name,
+          userId,
+          samary: data.samary,
+          content: content,
+          avatar: anh,
+          tagnews,
+          status: 0,
+        });
         await newApi.postnew({
           name: data.name,
           userId,
           samary: data.samary,
           content: content,
           avatar: anh,
-          tagnew,
+          tagnews,
           status: 0,
         });
       }
+      setState({ ...state, loadSpin: false });
       navigate('/Admin/New');
     } else {
       messageShowErr('Chưa có ảnh!');
@@ -149,6 +164,7 @@ export default function AddNew() {
     for (let i = 0; i < e.length; i++) {
       arr.push(e[i].value);
     }
+    console.log('tag:::', arr);
     setState({ ...state, tagId: arr });
   };
   const formatDataTag = (e) => {
