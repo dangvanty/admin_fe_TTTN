@@ -70,6 +70,7 @@ export default function BillDetail() {
                 <div className="phone">Tổng tiền hóa đơn: {fCurrency(bill?.total_price)} vnđ</div>
                 <div className="phone">Số điện thoại: {bill?.phone}</div>
                 <div className="phone">Địa chỉ: {bill?.address}</div>
+                <div className="phone">Ghi chú: {bill?.note}</div>
               </div>
               <h4 className="text-center" style={{ textAlign: 'center' }}>
                 Chi tiết sản phẩm

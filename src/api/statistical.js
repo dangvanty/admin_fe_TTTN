@@ -9,9 +9,15 @@ class Statistical {
   };
 
   getAllRevenueCustomer = () => {
-    const url = 'statistical/revenue';
+    const url = '/statistical/revenue';
     return axiosClient.get(url).then((res) => {
-      return res.resut;
+      return res.result;
+    });
+  };
+  getAllQuantityByTime = (params) => {
+    const url = '/statistical/quantity';
+    return axiosClient.get(url, { params }).then((res) => {
+      return res;
     });
   };
 }

@@ -12,6 +12,7 @@ import AppCurrentVisits from './sub-componentStatistical/AppCurrentVisits';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import statisticalApi from '#/api/statistical';
+import { formatMonthStatistical, formatQuantityValueStatistical } from './formatStatistical';
 export default function Statistical() {
   const theme = useTheme();
   const style = {
@@ -32,8 +33,17 @@ export default function Statistical() {
   };
   const [allTotalData, setAllTotalData] = useState(null);
   const [revenueCus, setRevenueCus] = useState([{ label: '', value: '' }]);
+  const [year, setYear] = useState(2023);
+  const [chartLabel, setChartLabel] = useState(null);
 
+  const [quantityChart, setQuantityChart] = useState({
+    valueSchedule: [],
+    valueProduct: [],
+    valuePets: [],
+  });
+  const { valueSchedule, valueProduct, valuePets } = quantityChart;
   const handleYear = (year) => {
+    setYear(year);
     console.log('year:::', +year);
   };
 
@@ -51,9 +61,18 @@ export default function Statistical() {
       });
       setRevenueCus(formatArr);
     });
-  }, []);
+    statisticalApi.getAllQuantityByTime({ year }).then((data) => {
+      console.log('djfkldfjdlkfjdflkdjf::', data);
+      setChartLabel(formatMonthStatistical(data.product, year));
+      setQuantityChart({
+        valueSchedule: formatQuantityValueStatistical(data.schedule),
+        valueProduct: formatQuantityValueStatistical(data.product),
+        valuePets: formatQuantityValueStatistical(data.pet),
+      });
+    });
+  }, [year]);
+  console.log('dklfjdklfjdlkfchar::', chartLabel);
 
-  console.log('data::::', allTotalData);
   return (
     <PageWrapper>
       <BreadcrumbsItem to="/admin/">Thống kê</BreadcrumbsItem>
@@ -99,37 +118,25 @@ export default function Statistical() {
               title="Thống kê số lượng bán "
               subheader="năm 2023"
               handleYear={handleYear}
-              chartLabels={[
-                '01/01/2003',
-                '02/01/2003',
-                '03/01/2003',
-                '04/01/2003',
-                '05/01/2003',
-                '06/01/2003',
-                '07/01/2003',
-                '08/01/2003',
-                '09/01/2003',
-                '10/01/2003',
-                '11/01/2003',
-              ]}
+              chartLabels={chartLabel}
               chartData={[
                 {
-                  name: 'Sản phẩm',
+                  name: 'Dịch vụ',
                   type: 'column',
                   fill: 'solid',
-                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 30],
+                  data: valueSchedule,
                 },
                 {
-                  name: 'Dịch vụ',
+                  name: 'Sản phẩm',
                   type: 'area',
                   fill: 'gradient',
-                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43],
+                  data: valueProduct,
                 },
                 {
                   name: 'Thú cưng',
                   type: 'line',
                   fill: 'solid',
-                  data: [30, 25, 36, 30, 45, 35, 64, 52, 59, 36, 39],
+                  data: valuePets,
                 },
               ]}
             />

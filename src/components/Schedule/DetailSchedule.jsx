@@ -57,7 +57,10 @@ export default function ScheduleDetail() {
                     <div className="text-bold">Cân nặng</div>: {schedule.typeWeight}
                   </p>
                   <p>
-                    <div className="text-bold">Thời gian</div>: {formatDate(schedule.date)}
+                    <div className="text-bold">Thời gian</div>: {schedule.time}
+                  </p>
+                  <p>
+                    <div className="text-bold">Ngày đặt</div>: {formatDate(schedule.date)}
                   </p>
                 </div>
               </div>

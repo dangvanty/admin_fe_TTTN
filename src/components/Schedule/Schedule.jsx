@@ -13,8 +13,8 @@ export default function Schedule() {
     { title: '#id', name: 'key' },
     { title: 'Người mua', name: 'name' },
     { title: 'Điện thoại', name: 'phone' },
-    { title: 'Địa chỉ', name: 'address' },
     { title: 'Thời gian', name: 'time' },
+    { title: 'Ngày đặt', name: 'day' },
     { title: 'Action', name: 'action' },
     { title: 'Chi tiết', name: 'detail' },
   ];
@@ -72,7 +72,7 @@ export default function Schedule() {
                 key: ok.id,
                 name: ok.name,
                 phone: ok.phone,
-                address: ok.address,
+                time: ok.time,
                 action:
                   ok.status === 0 ? (
                     <div className="status-bill-no" title="chưa xác nhận" onClick={() => onchangeStatus(0, ok.id)}>
@@ -88,7 +88,7 @@ export default function Schedule() {
                     Chi tiết
                   </p>
                 ),
-                time: formatDate(ok.date),
+                day: formatDate(ok.date),
               }))}
             />
             <Pagination
