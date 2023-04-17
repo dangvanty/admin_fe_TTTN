@@ -39,23 +39,27 @@ export default function CheckPetAdmin() {
     setdata(null);
     console.log({ e: typeof e, id: id });
     if (e === 1) {
-      petApi
-        .editpet({ checkAdmin: 2, id: id })
-        .then((data) => {
-          messageShowSuccess('Sửa thành công!');
-        })
-        .catch((err) => {
-          messageShowErr('Có lỗi xảy ra!');
-        });
+      if (window.confirm('Duyệt thú cưng này để đăng bán?')) {
+        petApi
+          .editpet({ checkAdmin: 2, id: id })
+          .then((data) => {
+            messageShowSuccess('Sửa thành công!');
+          })
+          .catch((err) => {
+            messageShowErr('Có lỗi xảy ra!');
+          });
+      }
     } else {
-      petApi
-        .editpet({ checkAdmin: 1, id: id })
-        .then((data) => {
-          messageShowSuccess('Sửa thành công!');
-        })
-        .catch((err) => {
-          messageShowErr('Có lỗi xảy ra!');
-        });
+      if (window.confirm('Không đăng bán thú cưng này nữa?')) {
+        petApi
+          .editpet({ checkAdmin: 1, id: id })
+          .then((data) => {
+            messageShowSuccess('Sửa thành công!');
+          })
+          .catch((err) => {
+            messageShowErr('Có lỗi xảy ra!');
+          });
+      }
     }
     setTimeout(() => {
       setLoad(!load);
@@ -85,13 +89,13 @@ export default function CheckPetAdmin() {
                 price: `${fCurrency(ok.price)} vnđ`,
                 user: ok.User.firstName + ' ' + ok.User.lastName,
                 action:
-                  ok.checkAdmin === 2 ? (
-                    <div className="status-icon" title="đã duyệt bán" onClick={() => onchangeStatus(2, ok.id)}>
-                      {check}
+                  ok.checkAdmin === 1 ? (
+                    <div className="status-bill-no" title="chưa duyệt bán" onClick={() => onchangeStatus(1, ok.id)}>
+                      Chưa duyệt
                     </div>
                   ) : (
-                    <div className="status-icon" title="chưa duyệt bán" onClick={() => onchangeStatus(1, ok.id)}>
-                      {notCheck}
+                    <div className="status-check-yes" title="đã duyệt bán" onClick={() => onchangeStatus(2, ok.id)}>
+                      Đã duyệt
                     </div>
                   ),
               }))}
