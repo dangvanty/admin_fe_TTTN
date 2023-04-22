@@ -17,7 +17,13 @@ class Statistical {
   getAllQuantityByTime = (params) => {
     const url = '/statistical/quantity';
     return axiosClient.get(url, { params }).then((res) => {
-      return res;
+      return res.data;
+    });
+  };
+  getAllYear = () => {
+    const url = '/statistical/quantity?year=2023';
+    return axiosClient.get(url).then((res) => {
+      return res.year;
     });
   };
 }

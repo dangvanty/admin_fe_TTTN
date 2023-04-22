@@ -4,6 +4,8 @@ import ReactApexChart from 'react-apexcharts';
 import { Card, CardHeader, Box } from '@mui/material';
 // components
 import { useChart } from '../chart';
+import { useEffect, useState } from 'react';
+import statisticalApi from '#/api/statistical';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +35,16 @@ export default function AppWebsiteVisits({ handleYear, title, subheader, chartLa
       },
     },
   });
+  const [valueYear, setValueYear] = useState(null);
+  useEffect(() => {
+    statisticalApi.getAllYear().then((data) => {
+      let arr = [];
+      data.forEach((el) => {
+        arr.push(el.year);
+      });
+      setValueYear(arr);
+    });
+  }, []);
 
   return (
     <Card {...other}>
@@ -40,8 +52,7 @@ export default function AppWebsiteVisits({ handleYear, title, subheader, chartLa
       <div style={{ marginLeft: '15px' }}>
         Năm
         <select onClick={(e) => handleYear(e.target.value)}>
-          <option value={2023}>2023</option>
-          <option value={2022}>2022</option>
+          {valueYear && valueYear?.map((year) => <option value={year}>{year}</option>)}
         </select>
       </div>
 
